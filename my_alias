@@ -5,6 +5,7 @@ alias gitt="open https://github.com/xuxingchen2018/ShortVideo-Android"
 alias cm="git commit -am"
 alias apush="git pull main dev&&git push origin dev&&gita"
 alias dir-script="/Users/xuxingchen/.ScriptLauncher"
+alias dir-pay="/Users/xuxingchen/AndroidStudioProjects/MrcdPayment"
 alias push='gitPush(){
 	mainBranch="dev"
 	originBranch="dev"
