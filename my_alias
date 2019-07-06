@@ -6,6 +6,7 @@ alias cm="git commit -am"
 alias apush="git pull main dev&&git push origin dev&&gita"
 alias dir-script="/Users/xuxingchen/.ScriptLauncher"
 alias dir-pay="/Users/xuxingchen/AndroidStudioProjects/MrcdPayment"
+alias mygithub="/Users/xuxingchen/mygithub"
 alias push='gitPush(){
 	mainBranch="dev"
 	originBranch="dev"
