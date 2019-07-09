@@ -4,7 +4,7 @@
 3.  基于第二点，利用MAC自带的AppleScript，编写了一套自动关闭指定项目的命令
 4.  使用：首先需要将AS配置到MAC的底部Dock中，并且右键，选项，分配给所有桌面
 5.  最后就可以在命令行下通过projects.scpt脚本获取当前AS所有打开的项目，脚本会输出所有的项目名称，最后通过close-pro.sh或者close.scpt这两个任意一个脚本关闭项目(close-pro.sh脚本只是对close.scpt脚本的一层简单封装)
-6.  CloseAS 是结合所有以上相关脚本写的一个Alfred脚本，只需要呼出Alfred，然后输入close关键字，插件便会将所有的AS窗口名称显示出来，选中想要关闭的窗口，回车即可关闭对应的工程目录窗口。
+6.  CloseAS 是结合所有以上相关脚本写的一个Alfred脚本，只需要呼出Alfred，然后输入close关键字，插件便会将所有的AS窗口名称显示出来，选中想要关闭的窗口，回车即可关闭对应的工程目录窗口(注：Alfred在3.6版本时可能会有权限丢失的问题，刚开始授权辅助功能后插件能够正常运行，但是过一段时间后，插件就获取不到AS窗口信息了，在升级到Alfred4.0后成功解救问题)
 
 
 [![预览](res/first_frame.jpg)](https://youtu.be/2SjPxVaDlM8)
