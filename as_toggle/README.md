@@ -7,6 +7,4 @@
 6.  CloseAS 是结合所有以上相关脚本写的一个Alfred脚本，只需要呼出Alfred，然后输入close关键字，插件便会将所有的AS窗口名称显示出来，选中想要关闭的窗口，回车即可关闭对应的工程目录窗口。
 
 
-<video id="video" controls="" preload="none" poster="res/first_frame.jpg">
-    <source id="mp4" src="res/1562642541284304.mp4" type="video/mp4">
-</video>
+[![预览](res/first_frame.jpg)](https://youtu.be/2SjPxVaDlM8)
