@@ -4,7 +4,7 @@
     ```
         apply from: rootProject.file("publish/PublishConfig.gradle")
     ```
-3. 在需要发布的工程目录下添加gradle.properties文件，配置内容参考 [示例]("gradle.properties.simple")
+3. 在需要发布的工程目录下添加gradle.properties文件，配置内容参考 [示例](gradle.properties.simple)
 4. 如需发布，选择AS右侧的gradle导航栏，找到要发布的工程，点开tasks，先运行other下的install任务
 然后如果配置的platform=jcenter，那么选择publishing下的bintrayUpload任务，双击即可，等待运行完成，
 如果配置的platform=maven，那么选择upload下的uploadArchives任务，双击即可
