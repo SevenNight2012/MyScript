@@ -1,0 +1,8 @@
+def platform = "maven"
+
+println path
+if (project.hasProperty("platform") && platform.equalsIgnoreCase(project.platform)) {
+    apply from: rootProject.file("publish/MavenPublish.gradle")
+} else {
+    apply from: rootProject.file("publish/JcenterPublish.gradle")
+}
