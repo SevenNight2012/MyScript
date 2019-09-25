@@ -2,7 +2,17 @@ def platform = "maven"
 
 println path
 if (project.hasProperty("platform") && platform.equalsIgnoreCase(project.platform)) {
-    apply from: rootProject.file("publish/MavenPublish.gradle")
+    File mavenPublish = rootProject.file("publish/MavenPublish.gradle")
+    if (null != mavenPublish && mavenPublish.exists()) {
+        apply from: mavenPublish
+    } else {
+        apply from: "https://raw.githubusercontent.com/SevenNight2012/MyScript/master/publish/MavenPublish.gradle"
+    }
 } else {
-    apply from: rootProject.file("publish/JcenterPublish.gradle")
+    File jPublish = rootProject.file("publish/JcenterPublish.gradlee")
+    if (null != jPublish && jPublish.exists()) {
+        apply from: jPublish
+    } else {
+        apply from: "https://raw.githubusercontent.com/SevenNight2012/MyScript/master/publish/JcenterPublish.gradle"
+    }
 }
