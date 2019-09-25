@@ -20,8 +20,13 @@ static def isNotEmpty(String text) {
 }
 
 def mavenRemote = System.getenv("MAVEN_REMOTE_URL")
+def mavenSnapshot = System.getenv("MAVEN_REMOTE_SNAPSHOT_URL")
 //mac下local url样例:file:///{path1}/{path2}/{path3}...
 def mavenLocal = System.getenv("MAVEN_LOCAL_URL")
+def mavenLocalSnapshot = System.getenv("MAVEN_LOCAL_SNAPSHOT_URL")
+if (isEmpty(mavenRemote) || isEmpty(mavenSnapshot) || isEmpty(mavenLocal) || isEmpty(mavenLocalSnapshot)) {
+    throw new IllegalArgumentException("Maven urls are empty,please set in environment variable")
+}
 
 boolean hasLibName = project.hasProperty("libraryName")
 def libraryName = project.name
@@ -37,7 +42,7 @@ if (project.hasProperty("localPublish")) {
 //snapshot版本暂时和release版本一样，snapshot版本可以覆盖，
 //所以如果使用需要慎重，极有可能用着用着就找不到类了，故不建议使用
 def releaseRepositoryUrl = isLocalPublish ? mavenLocal : mavenRemote
-def snapshotRepositoryUrl = isLocalPublish ? mavenLocal : mavenRemote
+def snapshotRepositoryUrl = isLocalPublish ? mavenLocalSnapshot : mavenSnapshot
 
 group = project.GROUP
 version = project.VERSION
