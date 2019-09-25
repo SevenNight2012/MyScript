@@ -26,7 +26,7 @@
     ```
     apply from: "https://raw.githubusercontent.com/SevenNight2012/MyScript/master/publish/PublishConfig.gradle"
     ```    
-    ***<font color=red>以http这种远程方式apply以后，publish目录下的所有文件可以不用拷贝，内部将全部以远程依赖的方式进行依赖</font>***    
+    <font color=red>以http这种远程方式apply以后，publish目录下的所有文件可以不用拷贝，内部将全部以远程依赖的方式进行依赖</font>    
     其余properties与环境变量的配置与方法一相同，不可省略。    
     **极简优化**：如果觉得apply的URL太长的话，可以将连接 [转成短连接](https://tool.chinaz.com/tools/dwz.aspx)，
     注意转成短连接后，将不容易理解，使用需自行斟酌。
