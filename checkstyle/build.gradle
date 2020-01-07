@@ -18,6 +18,7 @@ project.subprojects.each { childProject ->
             include '**/*.java'
             exclude '**/gen/**'
             exclude '**/encrypt/**'
+            exclude '**/domain/**'
 
             classpath = files()
 

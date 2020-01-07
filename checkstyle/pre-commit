@@ -1,5 +1,11 @@
 #!/bin/sh
 # 将该文件放到project根目录的.git/hooks/目录下即可，之后的每次commit都会先执行 checkstyle task 进行代码检查.
 
+files=$(git grep -n -i "check it") 
+
+if [ -n "$files" ]; then 
+    git grep -n -i "check it"
+    exit 1  
+fi 
 echo "执行 checkstyle 任务"
 ./gradlew checkstyle
