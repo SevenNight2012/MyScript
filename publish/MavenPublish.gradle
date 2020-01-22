@@ -3,35 +3,29 @@ apply plugin: 'maven'
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-println properties.hasProperty("MAVEN_USER_NAME") ? properties.MAVEN_USER_NAME : "未配置用户名"
-println properties.hasProperty("MAVEN_USER_PWD") ? properties.MAVEN_USER_PWD : "未配置密码"
-println properties.hasProperty("MAVEN_REPO_URL") ? properties.MAVEN_REPO_URL : "未配置仓库地址"
-
-/**
- * 获取用户名
- *
- * @return 用户名
- */
-def getRepositoryUsername() {
-    return properties.getProperty("MAVEN_USER_NAME")
+def userName
+def userPwd
+def repoUrl
+if (properties.propertyNames().any {
+    it == "MAVEN_USER_NAME"
+}) {
+    userName = properties.getProperty("MAVEN_USER_NAME")
+} else {
+    System.err.println("未配置用户名")
 }
-
-/**
- * 获取密码
- *
- * @return 密码
- */
-def getRepositoryPassword() {
-    return properties.getProperty("MAVEN_USER_PWD")
+if (properties.propertyNames().any {
+    it == "MAVEN_USER_PWD"
+}) {
+    userPwd = properties.getProperty("MAVEN_USER_PWD")
+} else {
+    System.err.println("未配置密码")
 }
-
-/**
- * 获取仓库地址
- *
- * @return 仓库地址
- */
-def getRepoUrl() {
-    return properties.getProperty("MAVEN_REPO_URL")
+if (properties.propertyNames().any {
+    it == "MAVEN_REPO_URL"
+}) {
+    repoUrl = properties.getProperty("MAVEN_REPO_URL")
+} else {
+    System.err.println("未配置仓库地址")
 }
 
 static def isEmpty(String text) {
@@ -48,23 +42,13 @@ if (hasLibName && isNotEmpty(project.libraryName)) {
     libraryName = project.libraryName
 }
 
-//def isLocalPublish = true
-//if (project.hasProperty("localPublish")) {
-//    isLocalPublish = project.localPublish.toBoolean()
-//}
-
-//snapshot版本暂时和release版本一样，snapshot版本可以覆盖，
-//所以如果使用需要慎重，极有可能用着用着就找不到类了，故不建议使用
-def releaseRepositoryUrl = getRepoUrl()
-//def snapshotRepositoryUrl = isLocalPublish ? mavenLocalSnapshot : mavenSnapshot
-
 group = project.GROUP
 version = project.VERSION
 
 System.err.println("************************* Upload Info *****************************")
 println "dependency  >> implementation \"" + group + ":" + libraryName + ":" + version + "\""
 //println "isLocalPublish           : " + isLocalPublish
-println "releaseRepositoryUrl     : " + releaseRepositoryUrl
+println "repoUrl      : " + repoUrl
 //println "snapshotRepositoryUrl    : " + snapshotRepositoryUrl
 System.err.println("*******************************************************************")
 
@@ -107,8 +91,8 @@ artifacts {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: releaseRepositoryUrl) {
-                authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+            repository(url: repoUrl) {
+                authentication(userName: userName, password: userPwd)
             }
 
             // 发布到maven的相关信息
