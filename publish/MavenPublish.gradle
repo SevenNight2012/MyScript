@@ -1,14 +1,37 @@
 apply plugin: 'maven'
 
-println System.getenv("NEXUS_USERNAME")
-println System.getenv("NEXUS_PASSWORD")
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-static def getRepositoryUsername() {
-    return System.getenv("NEXUS_USERNAME")
+println properties.hasProperty("MAVEN_USER_NAME") ? properties.MAVEN_USER_NAME : "未配置用户名"
+println properties.hasProperty("MAVEN_USER_PWD") ? properties.MAVEN_USER_PWD : "未配置密码"
+println properties.hasProperty("MAVEN_REPO_URL") ? properties.MAVEN_REPO_URL : "未配置仓库地址"
+
+/**
+ * 获取用户名
+ *
+ * @return 用户名
+ */
+def getRepositoryUsername() {
+    return properties.getProperty("MAVEN_USER_NAME")
 }
 
-static def getRepositoryPassword() {
-    return System.getenv("NEXUS_PASSWORD")
+/**
+ * 获取密码
+ *
+ * @return 密码
+ */
+def getRepositoryPassword() {
+    return properties.getProperty("MAVEN_USER_PWD")
+}
+
+/**
+ * 获取仓库地址
+ *
+ * @return 仓库地址
+ */
+def getRepoUrl() {
+    return properties.getProperty("MAVEN_REPO_URL")
 }
 
 static def isEmpty(String text) {
@@ -19,39 +42,30 @@ static def isNotEmpty(String text) {
     return !isEmpty(text)
 }
 
-def mavenRemote = System.getenv("MAVEN_REMOTE_URL")
-def mavenSnapshot = System.getenv("MAVEN_REMOTE_SNAPSHOT_URL")
-//mac下local url样例:file:///{path1}/{path2}/{path3}...
-def mavenLocal = System.getenv("MAVEN_LOCAL_URL")
-def mavenLocalSnapshot = System.getenv("MAVEN_LOCAL_SNAPSHOT_URL")
-if (isEmpty(mavenRemote) || isEmpty(mavenSnapshot) || isEmpty(mavenLocal) || isEmpty(mavenLocalSnapshot)) {
-    throw new IllegalArgumentException("Maven urls are empty,please set in environment variable")
-}
-
 boolean hasLibName = project.hasProperty("libraryName")
 def libraryName = project.name
 if (hasLibName && isNotEmpty(project.libraryName)) {
     libraryName = project.libraryName
 }
 
-def isLocalPublish = true
-if (project.hasProperty("localPublish")) {
-    isLocalPublish = project.localPublish.toBoolean()
-}
+//def isLocalPublish = true
+//if (project.hasProperty("localPublish")) {
+//    isLocalPublish = project.localPublish.toBoolean()
+//}
 
 //snapshot版本暂时和release版本一样，snapshot版本可以覆盖，
 //所以如果使用需要慎重，极有可能用着用着就找不到类了，故不建议使用
-def releaseRepositoryUrl = isLocalPublish ? mavenLocal : mavenRemote
-def snapshotRepositoryUrl = isLocalPublish ? mavenLocalSnapshot : mavenSnapshot
+def releaseRepositoryUrl = getRepoUrl()
+//def snapshotRepositoryUrl = isLocalPublish ? mavenLocalSnapshot : mavenSnapshot
 
 group = project.GROUP
 version = project.VERSION
 
 System.err.println("************************* Upload Info *****************************")
 println "dependency  >> implementation \"" + group + ":" + libraryName + ":" + version + "\""
-println "isLocalPublish           : " + isLocalPublish
+//println "isLocalPublish           : " + isLocalPublish
 println "releaseRepositoryUrl     : " + releaseRepositoryUrl
-println "snapshotRepositoryUrl    : " + snapshotRepositoryUrl
+//println "snapshotRepositoryUrl    : " + snapshotRepositoryUrl
 System.err.println("*******************************************************************")
 
 if (project.hasProperty("android")) { // Android libraries
@@ -94,9 +108,6 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: releaseRepositoryUrl) {
-                authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
-            }
-            snapshotRepository(url: snapshotRepositoryUrl) {
                 authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
             }
 
