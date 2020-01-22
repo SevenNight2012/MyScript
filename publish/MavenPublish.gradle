@@ -42,8 +42,8 @@ if (hasLibName && isNotEmpty(project.libraryName)) {
     libraryName = project.libraryName
 }
 
-group = project.GROUP
-version = project.VERSION
+def group = "${project.GROUP}"
+def version = "${project.VERSION}"
 
 System.err.println("************************* Upload Info *****************************")
 println "dependency  >> implementation \"" + group + ":" + libraryName + ":" + version + "\""
@@ -95,6 +95,7 @@ uploadArchives {
                 authentication(userName: userName, password: userPwd)
             }
 
+            println "--->>>>> " + group
             // 发布到maven的相关信息
             pom.groupId = group// 项目包名
             pom.artifactId = libraryName// 库名
