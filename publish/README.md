@@ -1,6 +1,11 @@
 ### 开源仓库发布工具使用
 #### 使用方法一
 1. 将publish目录拷贝到项目根目录下
+2. 在根目录下的build.gradle文件buildscript->dependencies节点下添加classpath
+   ```
+   classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+   classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+   ```
 2. 在需要发布的工程目录下的build.gradle文件的最后一行添加    
     ```
         apply from: rootProject.file("publish/PublishConfig.gradle")
