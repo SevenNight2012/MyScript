@@ -1,0 +1,18 @@
+光标移动至行首/行尾：cmd + left/right
+光标移动至前/后单词：option + left/right
+光标移动到文件头部/末尾：cmd + up/down
+多光标操作：cmd + shift + click(鼠标点击)
+选中和当前光标单词相同的下一处：cmd + d
+选中所有和当前光标单词相同的位置：cmd + ctrl + g
+删除当前行：cmd + left，cmd + backspace
+删除当前行：ctrl + shift + k
+删除至行首：cmd + backspace
+删除至行尾：cmd + delete
+复制当前行到下一行：cmd + shift + D
+移动选中的内容：cmd + ctrl + left/right
+显示/隐藏目录树：cmd + \\\\  (此处源文件中有4个反斜杠)
+焦点在目录树和编辑框中切换：ctrl + 0
+显示/隐藏当前目录：ctrl + [/]，焦点在目录树中才有效
+大小写转换：cmd + k + u/cmd + k + l
+上下移动当前行：cmd + ctrl + up/down
+调整编辑区文字大小：cmd + =

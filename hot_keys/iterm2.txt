@@ -1,0 +1,8 @@
+查看前一个/后一个命令：up/down
+光标移动到开头：ctrl+a
+光标移动到最后：ctrl+e
+按单词移动光标：option+left/right，需在profile中设置
+按单词删除命令：ctrl+w
+删除整行命令：ctrl+u
+清屏：ctrl+l 或者输入clear命令
+切换标签页：cmd+left/right

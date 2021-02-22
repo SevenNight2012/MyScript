@@ -1,0 +1,26 @@
+查看类继承关系：ctrl + h
+查看抽象方法或者接口的实现：cmd + option + click
+查看类、方法的基类/接口：cmd + u
+查看某个方法调用路径：ctrl + option + h
+查看/预览方法或者类的实现：cmd + y
+查看类的结构，方法：cmd + f12
+查看最近访问的文件列表：cmd + e
+查看方法注释：f1，再次按f1会展示doc的侧边栏
+查找、搜索类：cmd + o
+查找、搜索文件：cmd + shift + o
+查找类、方法的使用，调用：cmd + f7
+显示文件在项目中的位置：option + f1，再按enter
+复制当前文件的路径：cmd + shift + c
+删除当前行：cmd + backspace
+复制当前行到下一行：cmd + d
+移动当前行：cmd + shift + up/down
+光标快速移动到下一行：cmd + shift + enter
+光标跳转到前/后一次的位置：cmd + shift + left/right
+按词移动光标：option + left/right
+多光标操作：option + shift + click
+选中代码块，重构成方法：cmd + option + m
+选中变量，将其提取为常量：cmd + option + c
+格式化代码：cmd + option + l
+重命名类、方法：shift + f6
+运行：ctrl + r
+切换大小写：cmd + shift + u
