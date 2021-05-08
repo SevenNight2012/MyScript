@@ -2,3 +2,5 @@ shadowsocks-config.json
 server_nexus.txt
 proxy.txt
 studio
+**/run.txt
+**/err.txt

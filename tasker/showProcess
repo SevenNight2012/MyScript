@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+result="$(adb -s 894Y03QW1 shell ps | grep net.dinglisch.android.taskerm)"
+echo "$result"
+# cat proc/24290/oom_adj
