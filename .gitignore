@@ -4,3 +4,4 @@ proxy.txt
 studio
 **/run.txt
 **/err.txt
+**/.DS_Store
