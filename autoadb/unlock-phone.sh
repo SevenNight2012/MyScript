@@ -21,7 +21,8 @@ output="{
   \"items\": [
     {
       \"title\": \"$hint\",
-      \"valid\": false
+      \"valid\": true,
+      \"arg\": \"$hint\",
     }
   ]
 }"
