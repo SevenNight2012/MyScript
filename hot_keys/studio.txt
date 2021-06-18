@@ -12,6 +12,7 @@
 显示文件在项目中的位置：option + f1，再按enter
 复制当前文件的路径：cmd + shift + c
 删除当前行：cmd + backspace
+删除到单词开头：option + backspace
 复制当前行到下一行：cmd + d
 移动当前行：cmd + shift + up/down
 光标快速移动到下一行：cmd + shift + enter
