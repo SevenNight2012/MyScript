@@ -1,0 +1,23 @@
+{
+  "adsmediate": "1.0.0",
+  "audio": "1.0.0",
+  "base": "1.0.0",
+  "camera_ui": "1.0.0",
+  "cameraviewplus": "1.0.0",
+  "chatroom": "1.0.0",
+  "compose": "1.0.0",
+  "data": "1.0.0",
+  "domain": "1.0.0",
+  "family": "1.0.0",
+  "movieroom": "1.0.0",
+  "network": "1.0.0",
+  "private_message": "1.0.0",
+  "remoteconfig": "1.0.0",
+  "res-local": "1.0.0",
+  "resources": "1.0.0",
+  "splash": "1.0.0",
+  "store_sdk": "1.0.0",
+  "user_vip_props": "1.0.0",
+  "videoplayer": "1.0.0",
+  "wish": "1.0.0"
+}

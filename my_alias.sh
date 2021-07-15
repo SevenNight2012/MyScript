@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 alias goto="cd "
 alias subl="open -a /Applications/Sublime\ Text.app"
 alias gita="open https://github.com/xuxingchen2018/ShortVideo-Android"
@@ -43,28 +44,34 @@ alias example1='example1(){
 	done
 };example1'
 alias example2='example2(){
-	while getopts :a:b:c:d: ARGS  
-	do  
-	case $ARGS in   
-	    a)  
+	while getopts :a:b:c:d: ARGS
+	do
+	case $ARGS in
+	    a)
 	        echo "发现 -a 选项"
 	        echo "-a 选项的值是:$OPTARG"
-	        ;;  
-	    b)  
+	        ;;
+	    b)
 	        echo "发现 -b 选项"
-	        echo "-b 选项的值是：$OPTARG"  
-	        ;;  
-	    c)  
+	        echo "-b 选项的值是：$OPTARG"
+	        ;;
+	    c)
 	        echo "发现 -c 选项"
-	        echo "-c 选项的值是：$OPTARG"  
-	        ;;  
-	    d)  
+	        echo "-c 选项的值是：$OPTARG"
+	        ;;
+	    d)
 	        echo "发现 -d 参数"
 	        echo "-c 选项的值是:$OPTARG"
-	        ;;  
+	        ;;
 	    *)
 	    	echo "未知选项：$ARGS"
 	      	;;
 	esac
 	done
 };example2'
+function pull() {
+  git pull $@
+  if [ "$?" = "0" ] && [ "$(pwd | grep "WeShare-Android")" != "" ]; then
+    echo "pull" | nc localhost 12345
+  fi
+}
