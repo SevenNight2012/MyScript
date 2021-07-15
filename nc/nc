@@ -1,0 +1,2 @@
+./buildListener.sh: line 5: read: -l: invalid option
+read: usage: read [-ers] [-u fd] [-t timeout] [-p prompt] [-a array] [-n nchars] [-d delim] [name ...]
