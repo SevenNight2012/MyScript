@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-echo "hello ,i am server"
+out="hello ,i am server"
+# echo $out >>server.log
+echo $out

@@ -14,7 +14,7 @@ if [[ -p buffer ]]; then
 fi
 mkfifo buffer
 cat buffer|nc -lk localhost 12345 | while read line;do
-  echo "Server 接收到: $line"
+  echo "Server 接收到: $line" 
   if [[ "$line" == "pull" ]]; then
       bash test.sh $line
   fi
