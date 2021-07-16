@@ -70,8 +70,23 @@ alias example2='example2(){
 	done
 };example2'
 function pull() {
-  git pull $@
-  if [ "$?" = "0" ] && [ "$(pwd | grep "WeShare-Android")" != "" ]; then
-    echo "pull" | nc localhost 12345
+  result="$(git pull $@)"
+  # echo "result >>>> $result"
+  resultCode=$?
+  # echo "result code >>>>>> $resultCode"
+  if [ "$result" = "Already up-to-date." ]; then
+    osascript -e "display notification \"没有代码更新，不用同步AAR\" with title \"AAR同步任务\""
+  else
+    if [ $resultCode = 0 ]; then
+      if [ "$(pwd | grep "WeShare-Android")" != "" ]; then
+        osascript -e "display notification \"开始同步AAR\" with title \"AAR同步任务\""
+        publish
+      fi
+    else
+      osascript -e "display notification \"合并失败\" with title \"AAR同步任务\""
+    fi
   fi
+}
+function publish() {
+  echo "pull" | nc localhost 12345
 }
