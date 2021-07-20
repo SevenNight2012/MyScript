@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 source ~/.bash_profile
 fswatch -0 -e ".*_optimized" \
   -e ".*_compress" \
