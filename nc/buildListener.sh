@@ -4,9 +4,9 @@
 # done <"$()"
 nc -lk localhost 12345 | while read line; do
   echo "$line"
-  if [[ "$line" == "pull" ]]; then
+  # if [[ "$line" == "pull" ]]; then/
     bash ~/.ScriptLauncher/nc/invoke.sh $line
-  fi
+  # fi
 done
 # if [[ -p buffer ]]; then
 #   rm buffer

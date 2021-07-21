@@ -15,4 +15,10 @@ if [[ "$1" == "pull" ]]; then
   echo -e "发布 aar 完成 >>>>>> $time \n\n"
   # echo ">>>>>> $(pwd)"
   # cat build.gradle
+elif [[ "$1" == "pixel3" ]]; then
+  #statements
+  bash /Users/xuxingchen/.ScriptLauncher/tasker/894Y03QW1_unlock.sh
+elif [[ "$1" == "pixel" ]]; then
+  #statements
+bash /Users/xuxingchen/.ScriptLauncher/tasker/HT7320200007_unlock.sh
 fi

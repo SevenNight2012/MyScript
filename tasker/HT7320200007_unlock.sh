@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source ~/.bash_profile
 status="$(adb -s HT7320200007 shell dumpsys window policy | grep screenState)"
 key="screenState="
 keyLength=${#key}
