@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 if [[ "$1" == "pull" ]]; then
-  #statements
+  
+  osascript -e "display notification \"开始发布本地依赖\" with title \"AAR同步任务\""
   cd ~/mrcd/github/WeShare-Android
   cat mavenLocal/optimizeProjects.json >~/.ScriptLauncher/nc/optimizeProjects.tmp
   cat ~/.ScriptLauncher/nc/project.json >mavenLocal/optimizeProjects.json
@@ -13,12 +14,14 @@ if [[ "$1" == "pull" ]]; then
   mv ~/.ScriptLauncher/nc/optimizeProjects.tmp mavenLocal/optimizeProjects.json
   time=$(date "+%Y-%m-%d %H:%M:%S")
   echo -e "发布 aar 完成 >>>>>> $time \n\n"
-  # echo ">>>>>> $(pwd)"
-  # cat build.gradle
 elif [[ "$1" == "pixel3" ]]; then
-  #statements
+
+  osascript -e "display notification \"开始解锁 Pixel3_XL\" with title \"解锁手机\""
   bash /Users/xuxingchen/.ScriptLauncher/tasker/894Y03QW1_unlock.sh
+  osascript -e "display notification \"Pixel3_XL 解锁完成\" with title \"解锁手机\""
 elif [[ "$1" == "pixel" ]]; then
-  #statements
-bash /Users/xuxingchen/.ScriptLauncher/tasker/HT7320200007_unlock.sh
+
+  osascript -e "display notification \"开始解锁 Pixel_XL\" with title \"解锁手机\""
+  bash /Users/xuxingchen/.ScriptLauncher/tasker/HT7320200007_unlock.sh
+  osascript -e "display notification \"Pixel_XL 解锁完成\" with title \"解锁手机\""
 fi
