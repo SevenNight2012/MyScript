@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # 这是调用压缩工具的脚本
 source ~/.bash_profile
 result=""
