@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 if [[ "$1" == "pull" ]]; then
-  
+
   osascript -e "display notification \"开始发布本地依赖\" with title \"AAR同步任务\""
   cd ~/mrcd/github/WeShare-Android
   cat mavenLocal/optimizeProjects.json >~/.ScriptLauncher/nc/optimizeProjects.tmp
   cat ~/.ScriptLauncher/nc/project.json >mavenLocal/optimizeProjects.json
-  ./gradlew syncLocalDeps
+  ./gradlew syncLocalDeps 1>/dev/null
   result="同步成功"
   if [[ $? != 0 ]]; then
     result="同步失败"
