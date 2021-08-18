@@ -29,7 +29,7 @@ for i in "$@"; do
     fi
     if [[ "$unzipDir" == "${HOME}/Downloads" ]]; then
       # 在download目录下面
-      fromUrl="$(mdls -name kMDItemWhereFroms $i | grep "http://office.hinterstellar.com")"
+      fromUrl="$(mdls -name kMDItemWhereFroms $i | grep "http://cn.hi-net.org")"
       echo "$i 文件来源 >>$fromUrl"
       if [[ "$fromUrl" != "" ]]; then
         echo "将 $i 移至 $IMAGE_DIR"
