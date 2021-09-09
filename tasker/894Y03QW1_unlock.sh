@@ -12,8 +12,8 @@ if [[ "SCREEN_STATE_OFF" == "${status:12}" ]]; then
   sleep 0.5s
   adb -s 894Y03QW1 shell input motionevent DOWN 350 1700
   adb -s 894Y03QW1 shell input motionevent MOVE 1100 1700
-  adb -s 894Y03QW1 shell input motionevent MOVE 1100 2400
-  adb -s 894Y03QW1 shell input motionevent UP 1100 2400
+  adb -s 894Y03QW1 shell input motionevent MOVE 1100 2500
+  adb -s 894Y03QW1 shell input motionevent UP 1100 2500
   hint="屏幕解锁成功"
 else
   hint="当前屏幕无需解锁"
