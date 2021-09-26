@@ -3,7 +3,7 @@
 source ~/.bash_profile
 
 # 检查目录的合法性
-function checkDir {
+function checkDir() {
   filePath=$1
   if [[ $filePath != /* ]]; then
     result="$filePath 不是绝对路径"
@@ -18,7 +18,7 @@ function checkDir {
 }
 
 # 迁移download目录下的文件到imgDir目录下
-function moveDownloadFile2ImgDir {
+function moveDownloadFile2ImgDir() {
   # 定义变量：已下载的文件的
   downloadedFile=$1
   fromUrl="$(mdls -name kMDItemWhereFroms $downloadedFile | grep "http://cn.hi-net.org")"
@@ -31,7 +31,7 @@ function moveDownloadFile2ImgDir {
 
 # 将zip压缩包解压缩
 # unzip -n $i -d $unzipDir -x __MACOSX/*
-function unzipImages {
+function unzipImages() {
   zipFile=$1
   hasMacosxDir="$(unzip -l $zipFile | grep "__MACOSX/")"
   if [[ "$hasMacosxDir" == "" ]]; then
@@ -43,30 +43,25 @@ function unzipImages {
   fi
 }
 
-function readFolder {
-  for element in `ls $1`
-  do
-      dir_or_file=$1"/"$element
-      if [ -d $dir_or_file ]
-      then
-          legalName="${dir_or_file// /_}"
-          # echo $legalName
-          if [[ $legalName == $dir_or_file ]];
-          then
-            echo "$dir_or_file 相同的目录和文件名"
-          else
-            echo ">>>  $legalName"
-            mv $dir_or_file $legalName
-          fi
-
-          # sed -i 's/ /_/g' $dir_or_file/*
-          readFolder $dir_or_file
-      fi
+# 递归遍历文件夹中的文件
+function readFolder() {
+  thisFolder="$1"
+  for element in $(ls "$1" | tr " " "\?"); do
+    # rightDirName=$1"/"$element
+    element=$(tr "\?" " " <<<$element)
+    dir_or_file=$1"/"$element
+    if [ -d "$dir_or_file" ]; then
+      readFolder "$dir_or_file"
+    elif [[ -f "$dir_or_file" ]]; then
+      # 文件
+      # squoosh-cli --quant '{"enabled":true,"zx":0,"numColors":64,"dither":0.6}' --oxipng '{"level":2,"interlace":false}'
+      echo "$dir_or_file"
+    fi
   done
 }
 
 # 使用Squoosh进行图片压缩
-function compressImageBySquoosh {
+function compressImageBySquoosh() {
   imagePath=$1
   parentPath=${imagePath%/*}
   imageDir=${imagePath##*/}
