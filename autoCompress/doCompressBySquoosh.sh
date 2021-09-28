@@ -3,7 +3,7 @@
 # 传入图片，则直接压缩图片，然后覆盖
 source ~/.bash_profile
 runMain=false
-logFile="$HOME/compress.log"
+logFile="$HOME/compress.html"
 
 # 专门用来处理图片文件的函数
 function compressImageFile() {
@@ -15,29 +15,36 @@ function compressImageFile() {
   cd "$thisFolder"
   if [[ "png" == "$extension" || "PNG" == "$extension" ]]; then
     # echo "$imageFile 是png"
+    echo "<tr><td style=\"white-space: pre-line;\">">>"$logFile"
     squoosh-cli \
       --quant '{"enabled":true,"zx":0,"numColors":64,"dither":0.5}' --oxipng '{"level":2,"interlace":false}' \
       "$imageFile" \
       >>"$logFile" 2>&1
+    echo "</td></tr>">>"$logFile"
   elif [[ "jpg" == "$extension" || "JPG" == "$extension" || "jpeg" == "$extension" || "JPEG" == "$extension" ]]; then
     # echo "$imageFile 是jpg文件"
-
+    echo "<tr><td style=\"white-space: pre-line;\">">>"$logFile"
     squoosh-cli \
       --mozjpeg '{"quality":75,"baseline":false,"arithmetic":false,"progressive":true,"optimize_coding":true,"smoothing":0,"color_space":3,"quant_table":3,"trellis_multipass":false,"trellis_opt_zero":false,"trellis_opt_table":false,"trellis_loops":1,"auto_subsample":true,"chroma_subsample":2,"separate_chroma_quality":false,"chroma_quality":75}' \
       "$imageFile" \
       >>"$logFile" 2>&1
+    echo "</td></tr>">>"$logFile"
     if [[ "jpeg" == "$extension" || "JPEG" == "$extension" ]]; then
       # jpeg格式的文件压缩完以后输出文件是jpg的，所以需要手动删除原图
       rm "$imageFile"
     fi
   elif [[ "webp" == "$extension" || "WEBP" == "$extension" ]]; then
     # echo "$imageFile 是webp"
+    echo "<tr><td style=\"white-space: pre-line;\">">>"$logFile"
     squoosh-cli \
       --webp '{"quality":75,"target_size":0,"target_PSNR":0,"method":4,"sns_strength":50,"filter_strength":60,"filter_sharpness":0,"filter_type":1,"partitions":0,"segments":4,"pass":1,"show_compressed":0,"preprocessing":0,"autofilter":0,"partition_limit":0,"alpha_compression":1,"alpha_filtering":1,"alpha_quality":100,"lossless":0,"exact":1,"image_hint":0,"emulate_jpeg_size":0,"thread_level":0,"low_memory":0,"near_lossless":100,"use_delta_palette":0,"use_sharp_yuv":0}' \
       "$imageFile" \
       >>"$logFile" 2>&1
+    echo "</td></tr>">>"$logFile"
   else
-    echo "$imageFile 不支持 $extension 类型的文件" >>"$logFile" 2>&1
+    echo "<tr><td><font color=\"RED\">">>"$logFile"
+    echo -e "${RED}$imageFile 不支持 $extension 类型的文件${NC}" >>"$logFile" 2>&1
+    echo "</font></td></tr>">>"$logFile"
   fi
 }
 
@@ -65,16 +72,19 @@ function compressDir() {
   imageDir="${imagePath##*/}"
   optimizedDir="$parentPath/${imageDir}_optimized"
 
-  # echo "路径：$imagePath"
-  # echo "父目录：$parentPath"
-  # echo "目录名：$imageDir"
+  # echo "路径：$imagePath">>"$logFile"
+  # echo "父目录：$parentPath">>"$logFile"
+  # echo "目录名：$imageDir">>"$logFile"
   # 复制文件夹
   cp -rf "$imagePath/" "$optimizedDir/"
-  echo ">>>>>> 开始压缩 "$i" 目录下的图片 <<<<<<" >>"$logFile" 2>&1
+  echo "<tr><td style=\"white-space: pre-line;\">">>"$logFile"
+  echo ">>>>>> 开始压缩 "$imagePath" 目录下的图片 <<<<<<" >>"$logFile" 2>&1
+  echo "</td></tr>">>"$logFile"
   readFolder "$optimizedDir"
+  echo "<tr><td style=\"white-space: pre-line;\">">>"$logFile"
   echo ">>>>>> 压缩结束 <<<<<<" >>"$logFile" 2>&1
+  echo "</td></tr>">>"$logFile"
   open "$optimizedDir"
-  osascript -e "display notification \"压缩完成\""
 }
 # 主入口
 function main() {
@@ -99,9 +109,9 @@ fi
 function readAutomator() {
   count=$#
   count=$(($count / 2))
-  echo "" >"$logFile"
-  for ((i = 1; i <= $count; i = i + 1)); do
-    eval img=\${$i}
+  echo "<table>" >"$logFile"
+  for ((index = 1; index <= $count; index = index + 1)); do
+    eval img=\${$index}
     # echo $img >>"$logFile"
     if [ -d "$img" ]; then
       # 处理文件夹
@@ -111,5 +121,5 @@ function readAutomator() {
       compressImageFile "$img" "${img%/*}"
     fi
   done
-  # echo "finish" >>"$logFile"
+  echo "</table>" >>"$logFile"
 }

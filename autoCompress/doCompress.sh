@@ -53,7 +53,10 @@ for i in "$@"; do
   endFlag="${i: -4}"
   if [ -d "$i" ]; then
     if [ "${i%/*}" == "$IMAGE_DIR" ]; then
+      echo "<table>" >"$logFile"
       compressDir "$i"
+      echo "</table>" >>"$logFile"
+      osascript -e "display notification \"压缩完成\""
     fi
   elif [ -f "$i" ]; then
     checkResult=true
