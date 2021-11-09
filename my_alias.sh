@@ -1,14 +1,7 @@
 #!/usr/bin/env bash
-alias goto="cd "
-alias subl="open -a /Applications/Sublime\ Text.app"
-alias gita="open https://github.com/xuxingchen2018/ShortVideo-Android"
-alias gitt="open https://github.com/xuxingchen2018/ShortVideo-Android"
-alias mrcd="/Users/xuxingchen/mrcd"
+# 提交代码
 alias cm="git commit -am"
-alias apush="git pull main dev&&git push origin dev&&gita"
-alias dir-script="/Users/xuxingchen/.ScriptLauncher"
-alias dir-pay="/Users/xuxingchen/AndroidStudioProjects/MrcdPayment"
-alias mygithub="/Users/xuxingchen/mygithub"
+
 alias pros="osascript /Users/xuxingchen/.ScriptLauncher/as_toggle/projects.scpt"
 alias close="bash /Users/xuxingchen/.ScriptLauncher/as_toggle/close-pro.sh "
 alias push='gitPush(){
