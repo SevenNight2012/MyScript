@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# 获取git当前分支的名称
+alias bname="git symbolic-ref --short HEAD | pbcopy"
+
 # 提交代码
 alias cm="git commit -am"
 
