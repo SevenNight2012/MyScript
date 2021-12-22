@@ -1,0 +1,1 @@
+grep命令：grep 'keywords' file/dir -r[递归查找] -C<显示目标行前后n行数> n
