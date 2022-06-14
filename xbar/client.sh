@@ -6,6 +6,8 @@ if [[ "$param" == "pixel3" ]]; then
   echo "pixel3" | nc localhost 12345
 elif [[ "$param" == "pixel" ]]; then
   echo "pixel" | nc localhost 12345
+elif [[ "$param" == "realme" ]]; then
+  echo "realme" | nc localhost 12345
 elif [[ "$param" == "pull" ]]; then
   echo "pull" | nc localhost 12345
 fi

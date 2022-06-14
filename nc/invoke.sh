@@ -24,4 +24,9 @@ elif [[ "$1" == "pixel" ]]; then
   osascript -e "display notification \"开始解锁 Pixel_XL\" with title \"解锁手机\""
   bash /Users/xuxingchen/.ScriptLauncher/tasker/HT7320200007_unlock.sh
   osascript -e "display notification \"Pixel_XL 解锁完成\" with title \"解锁手机\""
+elif [[ "$1" == "realme" ]]; then
+  
+  osascript -e "display notification \"开始解锁 RealMe\" with title \"解锁手机\""
+  bash /Users/xuxingchen/.ScriptLauncher/tasker/f9ae61fa_unlock.sh
+  osascript -e "display notification \"RealMe 解锁完成\" with title \"解锁手机\""
 fi
