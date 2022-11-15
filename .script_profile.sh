@@ -11,3 +11,5 @@ export IMAGE_DIR=$HOME/work/img
 export MAGICK_HOME=$HOME/ImageMagick-7.0.10
 export PATH=$PATH:${MAGICK_HOME}/bin
 export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
+
+export HEIC_CONVERTER=$SCRIPT_DIR/heicConvert/heicConvert.sh
