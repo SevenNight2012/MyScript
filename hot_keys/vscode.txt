@@ -1,0 +1,2 @@
+切换成大写: option + shift + u
+切换成小写: option + shift + l
